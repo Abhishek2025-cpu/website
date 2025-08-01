@@ -42,7 +42,7 @@ const Navbar = () => {
         </li>
           <li>
           <NavLink to="/zodiac-signs">
-           
+            <BsStars />
             <span>Zodiac Signs</span>
           </NavLink>
         </li>

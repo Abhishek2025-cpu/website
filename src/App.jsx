@@ -1,5 +1,5 @@
 // src/App.jsx
-
+import  { useState, useEffect } from 'react';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
@@ -13,12 +13,36 @@ import 'swiper/css/autoplay'; // Though often handled by JS, good to have
 
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
+import { AnimatePresence } from 'framer-motion';
+import PromotionModal from './components/PromotionModal';
 
 
 
 function App() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    // Check if the modal has already been shown in this session
+    const hasSeenModal = sessionStorage.getItem('promoModalSeen');
+
+    if (!hasSeenModal) {
+      const timer = setTimeout(() => {
+        setIsModalOpen(true);
+        // Mark as seen for this session
+        sessionStorage.setItem('promoModalSeen', 'true');
+      }, 15000); // 15 seconds
+
+      // Cleanup the timer if the component unmounts
+      return () => clearTimeout(timer);
+    }
+  }, []); // Empty dependency array ensures this runs only once on mount
+
+  const closeModal = () => setIsModalOpen(false);
   return (
     <Router>
+         <AnimatePresence>
+        {isModalOpen && <PromotionModal onClose={closeModal} />}
+      </AnimatePresence>
       <Navbar />
       <main>
         <Routes>
