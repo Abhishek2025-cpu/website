@@ -10,7 +10,7 @@ import 'swiper/css/pagination'; // For pagination dots AND progress bar
 import 'swiper/css/effect-fade'; // For the hero slider's fade effect
 import 'swiper/css/autoplay'; // Though often handled by JS, good to have
 
-// ... (your other imports like Navbar, HomePage, etc.)
+
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 
