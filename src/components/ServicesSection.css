@@ -1,0 +1,132 @@
+/* src/components/ServicesSection.css */
+
+.services-section {
+  padding: 4rem 0;
+  /* Gradient background from dark to a slightly lighter tone */
+  background: linear-gradient(180deg, var(--bg-color) 0%, #1a140f 100%);
+}
+
+/* --- Premium Services Bar --- */
+.premium-services-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  padding: 2rem 5%;
+  margin-bottom: 4rem;
+  background-color: var(--dark-accent);
+  border-top: 1px solid rgba(255, 184, 51, 0.2);
+  border-bottom: 1px solid rgba(255, 184, 51, 0.2);
+}
+
+.premium-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  transition: all 0.4s ease;
+  border: 1px solid transparent;
+}
+
+.premium-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--primary-color);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.premium-icon {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  transition: color 0.3s ease;
+}
+
+.premium-card:hover .premium-icon {
+  color: var(--secondary-color);
+}
+
+.premium-title {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+
+/* --- Complimentary Services Section --- */
+.complimentary-services-container {
+  padding: 0 5%;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  color: var(--secondary-color);
+  letter-spacing: 1px;
+}
+
+.complimentary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.complimentary-card-wrapper {
+  /* This wrapper handles the 3D transform perspective */
+  transform-style: preserve-3d;
+}
+
+.complimentary-card {
+  background: var(--dark-accent);
+  padding: 2.5rem 1.5rem;
+  border-radius: 16px;
+  text-align: center;
+  border: 1px solid rgba(255, 184, 51, 0.15);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.complimentary-card-wrapper:hover .complimentary-card {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 40px var(--glow-color);
+}
+
+.card-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, var(--primary-color), #d4951a);
+  display: grid;
+  place-items: center;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 5px 15px var(--glow-color);
+  transform: translateZ(50px); /* Makes the icon pop out */
+}
+
+.card-icon-wrapper svg {
+  font-size: 2.5rem;
+  color: var(--bg-color);
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--secondary-color);
+  transform: translateZ(30px); /* Adds to the 3D effect */
+}
+
+.card-description {
+  color: var(--text-color);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  transform: translateZ(20px);
+}

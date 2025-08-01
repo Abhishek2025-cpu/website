@@ -1,0 +1,62 @@
+/* src/components/NakshatrasSection.css - Final Pill with Icons */
+
+.nakshatras-section {
+    padding: 5rem 5%;
+    background-color: var(--bg-color);
+    text-align: center;
+}
+
+.nakshatras-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.nakshatras-subtitle {
+    max-width: 600px;
+    margin: 0 auto 3rem auto;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.nakshatras-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nakshatra-pill {
+    /* Use Flexbox for alignment */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+
+    padding: 0.8rem 1.5rem;
+    border: 1px solid rgba(255, 184, 51, 0.25);
+    border-radius: 50px;
+    color: var(--primary-color);
+    background-color: transparent;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+}
+
+.nakshatra-pill-icon svg {
+    font-size: 1.2rem;
+    /* The color will be inherited from the parent .nakshatra-pill */
+}
+
+.nakshatra-pill-name {
+    font-size: 1rem;
+}
+
+.nakshatra-pill:hover {
+    color: var(--bg-color); /* This will apply to both icon and text */
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 20px var(--glow-color);
+    transform: translateY(-2px);
+}

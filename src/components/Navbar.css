@@ -1,0 +1,68 @@
+/* src/components/Navbar.css */
+
+/* ... your existing Navbar.css styles ... */
+
+.navbar-links a {
+  /* This is the key part for aligning the icon and text */
+  display: flex;
+  align-items: center; /* Vertically centers the icon with the text */
+  gap: 8px; /* Creates a nice space between the icon and the text */
+  /* Add any other existing styles for your links here, like padding, color, etc. */
+}
+
+/* Optional: You can style the icons themselves if needed */
+.navbar-links a svg {
+  font-size: 1.1rem; /* Makes the icon slightly larger than the text */
+}
+
+/* Example of what your existing styles might look like */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: rgba(20, 20, 40, 0.8); /* Example background */
+  backdrop-filter: blur(10px);
+  color: white;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-logo a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-logo svg {
+  color: #ffcc00; /* Sun color */
+  font-size: 2rem;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links a {
+  color: #eee;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navbar-links a:hover,
+.navbar-links a.active {
+  color: #ffcc00;
+}
