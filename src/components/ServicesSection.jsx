@@ -24,12 +24,15 @@ const itemVariants = {
 const ServiceCard = ({ icon, title, description, link }) => {
   const [rotate, setRotate] = useState({ x: 0, y: 0 });
 
+  // This effect is primarily for desktop users with a mouse.
   const handleMouseMove = (e) => {
+    // A simple check to avoid this effect on touch-based devices
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
-    // Adjust the divisor for more or less tilt
     setRotate({ x: -y / 20, y: x / 20 });
   };
 
@@ -52,7 +55,7 @@ const ServiceCard = ({ icon, title, description, link }) => {
           <div className="card-icon-wrapper">
             {icon}
           </div>
-          <h3 className="card-title">{title}</h3>
+          <h4 className="card-title">{title}</h4> {/* Changed to h4 for semantics */}
           <p className="card-description">{description}</p>
       </Link>
     </motion.div>
@@ -63,6 +66,9 @@ const ServiceCard = ({ icon, title, description, link }) => {
 const ServicesSection = () => {
   return (
     <section className="services-section">
+      {/* NEW: Main heading for the entire section */}
+      <h2 className="services-main-title">Our Services</h2>
+
       {/* Top Premium Services */}
       <motion.div
         className="premium-services-container"
@@ -83,7 +89,8 @@ const ServicesSection = () => {
 
       {/* Bottom Complimentary Services */}
       <div className="complimentary-services-container">
-        <h2 className="section-title">Complimentary Astrology Services</h2>
+        {/* UPDATED: Changed to h3 for better semantic hierarchy */}
+        <h3 className="section-subtitle">Complimentary Astrology Services</h3>
         <motion.div
           className="complimentary-grid"
           variants={containerVariants}

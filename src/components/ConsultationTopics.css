@@ -1,19 +1,20 @@
-/* src/components/ConsultationTopics.css - REPLACEMENT STYLES */
+/* src/components/ConsultationTopics.css - FULLY RESPONSIVE REPLACEMENT */
 
 .consultation-section-v2 {
-    padding: 5rem 2%;
+    padding: 5rem 5%; /* Use percentage for better scaling */
     background-color: var(--bg-color);
-    width: 100%;
 }
 
 .consultation-main-title-v2 {
-    font-size: 2.2rem;
-    font-weight: 600;
-    color: var(--text-color);
+    font-size: 2.5rem; /* Larger title for desktop */
+    font-weight: 700;
+    color: var(--secondary-color); /* This is the color we want to match */
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 3.5rem;
+    letter-spacing: 1px;
 }
 
+/* DESKTOP: Horizontal list style */
 .consultation-list {
     list-style: none;
     display: flex;
@@ -22,16 +23,24 @@
     gap: 2rem;
     padding: 0;
     margin: 0;
+    border: 1px solid rgba(255, 184, 51, 0.15);
+    background-color: var(--dark-accent);
+    padding: 1rem;
+    border-radius: 12px;
 }
 
 .consultation-item {
     position: relative;
-    padding: 1rem 1.5rem;
-    display: flex;
-    align-items: center; /* This fixes any vertical alignment issues */
+    padding: 1rem;
+    border-radius: 8px; /* Added for a subtle hover effect */
+    transition: background-color 0.3s ease;
 }
 
-/* Vertical Dividers */
+.consultation-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Vertical Dividers for Desktop View */
 .consultation-item:not(:last-child)::after {
     content: '';
     position: absolute;
@@ -49,7 +58,7 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    color: var(--text-color);
+    color: var(--text-color); /* Text color remains the same */
     transition: color 0.3s ease;
 }
 
@@ -57,53 +66,109 @@
     color: var(--primary-color);
 }
 
+/* === UPDATED ICON STYLES === */
 .consultation-icon-v2 svg {
     font-size: 2.5rem;
-    /* The link's color will be inherited */
+    color: var(--secondary-color); /* CHANGE: Icon color now matches the heading */
+    transition: transform 0.3s ease, color 0.3s ease; /* Add 'color' to transition */
 }
+
+.consultation-item:hover .consultation-icon-v2 svg {
+    transform: scale(1.1);
+    color: var(--primary-color); /* CHANGE: Explicitly set hover color for the icon */
+}
+/* === END OF UPDATED ICON STYLES === */
+
 
 .consultation-title-v2 {
     font-weight: 500;
     font-size: 0.9rem;
-    white-space: nowrap; /* Prevent text from wrapping */
+    white-space: nowrap; /* Prevent text from wrapping on desktop */
 }
 
-/* The Animated Underline */
-.active-underline {
-    position: absolute;
-    bottom: 0;
-    left: 10%;
-    right: 10%;
-    height: 3px;
-    background: var(--primary-color);
-    border-radius: 2px;
-    box-shadow: 0 0 15px var(--glow-color);
-}
+/* ===============================================
+   RESPONSIVE DESIGN 
+   =============================================== */
 
-/* Responsive adjustment for smaller screens */
-@media (max-width: 1024px) {
-    .consultation-list {
-        gap: 1rem;
-    }
-    .consultation-item {
-        padding: 1rem;
-    }
-    .consultation-item:not(:last-child)::after {
-        right: -0.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    /* On mobile, make it scrollable horizontally */
+/* --- Tablet & Mobile View (<= 992px) --- */
+@media (max-width: 992px) {
     .consultation-section-v2 {
-        overflow-x: auto;
-        padding: 4rem 1rem;
+        padding: 4rem 5%;
     }
+
+    .consultation-main-title-v2 {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    /* KEY CHANGE: Switch to a grid layout */
     .consultation-list {
-        justify-content: flex-start; /* Align to the start for scrolling */
-        padding: 0 1rem;
+        display: grid;
+        /* Create as many 250px columns as can fit */
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        /* Remove desktop-specific styles */
+        border: none;
+        background-color: transparent;
+        padding: 0;
     }
+
+    /* Style each item as a self-contained card */
+    .consultation-item {
+        background: var(--dark-accent);
+        border: 1px solid rgba(255, 184, 51, 0.15);
+        border-radius: 12px;
+        padding: 2rem 1rem;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .consultation-item:hover {
+        transform: translateY(-5px);
+        border-color: var(--primary-color);
+        background-color: var(--dark-accent); /* Keep background on hover */
+    }
+
+    /* Hide the desktop dividers */
+    .consultation-item:not(:last-child)::after {
+        display: none;
+    }
+
+    .consultation-title-v2 {
+        white-space: normal; /* Allow text to wrap inside the card */
+        text-align: center;
+    }
+}
+
+/* --- Small Mobile View (<= 576px) --- */
+@media (max-width: 576px) {
+    .consultation-section-v2 {
+        padding: 3rem 5%;
+    }
+
     .consultation-main-title-v2 {
         font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+    
+    /* YOUR REQUEST: Force a strict 2-column layout */
+    .consultation-list {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+    
+    .consultation-item {
+        padding: 1.5rem 0.5rem;
+    }
+
+    .consultation-link {
+        gap: 0.75rem;
+    }
+
+    .consultation-icon-v2 svg {
+        font-size: 2.2rem;
+    }
+
+    .consultation-title-v2 {
+        font-size: 0.8rem;
     }
 }

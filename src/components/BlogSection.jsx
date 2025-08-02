@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { blogPostsData } from '../data/blogData';
-import BlogPostCard from './BlogPostCard';
+import BlogPostCard from './BlogPostCard'; // Assuming BlogPostCard is in its own file
 import './BlogSection.css';
 
 const containerVariants = {
@@ -16,7 +16,7 @@ const BlogSection = () => {
       <div className="container">
         <h2 className="blog-section-title">From Our Cosmic Journal</h2>
         <motion.div
-          className="blog-grid"
+          className="blog-grid" // This class will be re-styled for mobile
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"

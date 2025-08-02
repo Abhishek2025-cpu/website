@@ -1,39 +1,29 @@
 /* src/components/Navbar.css */
 
-/* ... your existing Navbar.css styles ... */
-
-.navbar-links a {
-  /* This is the key part for aligning the icon and text */
-  display: flex;
-  align-items: center; /* Vertically centers the icon with the text */
-  gap: 8px; /* Creates a nice space between the icon and the text */
-  /* Add any other existing styles for your links here, like padding, color, etc. */
-}
-
-/* Optional: You can style the icons themselves if needed */
-.navbar-links a svg {
-  font-size: 1.1rem; /* Makes the icon slightly larger than the text */
-}
-
-/* Example of what your existing styles might look like */
+/* ==================================
+   Base Navbar & General Styles
+   ================================== */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: rgba(20, 20, 40, 0.8); /* Example background */
+  background-color: rgba(20, 20, 40, 0.8);
   backdrop-filter: blur(10px);
   color: white;
   position: fixed;
   width: 100%;
   top: 0;
+  left: 0;
   z-index: 1000;
+  box-sizing: border-box;
 }
 
 .navbar-logo {
   display: flex;
   align-items: center;
   gap: 10px;
+  color: var(--primary-color);
   font-size: 1.5rem;
   font-weight: bold;
 }
@@ -44,25 +34,115 @@
 }
 
 .navbar-logo svg {
-  color: #ffcc00; /* Sun color */
+  color: #ffcc00;
   font-size: 2rem;
 }
 
-.navbar-links {
-  list-style: none;
-  display: flex;
-  gap: 2rem;
-  margin: 0;
-  padding: 0;
+.hamburger-button, .mobile-menu, .backdrop {
+  display: none;
 }
 
-.navbar-links a {
-  color: #eee;
-  text-decoration: none;
-  transition: color 0.3s ease;
+/* ==================================
+   Desktop View Styles (851px and up)
+   ================================== */
+@media (min-width: 851px) {
+  .desktop-links {
+    display: flex; list-style: none; gap: 2rem; margin: 0; padding: 0;
+  }
+  .desktop-links a {
+    display: flex; align-items: center; gap: 8px; color: #eee; text-decoration: none; padding-bottom: 5px; position: relative; transition: color 0.3s ease;
+  }
+  .desktop-links a svg { font-size: 1.1rem; }
+  .desktop-links a.active { color: #ffcc00; }
+  .desktop-links a:hover { color: #ffcc00; }
+  .desktop-links a::after {
+    content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #ffcc00; transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  .desktop-links a:hover::after { width: 100%; }
 }
 
-.navbar-links a:hover,
-.navbar-links a.active {
-  color: #ffcc00;
+/* ==================================
+   Mobile & Tablet View Styles (up to 850px)
+   ================================== */
+@media (max-width: 850px) {
+  .navbar {
+    padding: 1rem 1.5rem;
+  }
+  .desktop-links {
+    display: none;
+  }
+
+  .hamburger-button {
+    display: flex; /* Use flex to center the SVG inside */
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1001; /* Must be above the backdrop but can be below the menu now */
+    padding: 10px;
+  }
+  
+  .backdrop {
+    display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 1050;
+  }
+
+  .mobile-menu {
+    display: block; position: fixed; top: 0; right: 0; height: 100%; width: min(75vw, 320px); background: rgba(25, 25, 45, 0.95); backdrop-filter: blur(15px); z-index: 1100; box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
+    /* REMOVED padding-top, we will handle spacing internally */
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* NEW: STYLING FOR THE HEADER INSIDE THE SIDEBAR */
+  .mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0; /* Prevents the header from shrinking */
+  }
+
+  .mobile-menu-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+  }
+
+  .mobile-menu-logo svg {
+    color: #ffcc00;
+    font-size: 1.8rem;
+  }
+
+  /* NEW: Styling for the close button inside the sidebar */
+  .sidebar-close-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+  }
+
+  .mobile-menu ul {
+    list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column;
+    /* NEW: Add some space from the header */
+    margin-top: 1.5rem;
+    overflow-y: auto; /* Allow scrolling if list is long */
+  }
+  
+  .mobile-menu li { width: 100%; }
+  .mobile-menu a {
+    display: flex; align-items: center; gap: 1rem; color: #eee; text-decoration: none; font-size: 1.1rem; font-weight: 500; padding: 1rem 2rem; width: 100%; box-sizing: border-box; transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .mobile-menu a.active,
+  .mobile-menu a:hover {
+    color: #ffcc00;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
 }

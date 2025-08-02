@@ -1,9 +1,20 @@
 /* src/components/ServicesSection.css */
 
 .services-section {
-  padding: 4rem 0;
-  /* Gradient background from dark to a slightly lighter tone */
+  padding: 5rem 0; /* Increased padding for more space on desktop */
   background: linear-gradient(180deg, var(--bg-color) 0%, #1a140f 100%);
+  overflow: hidden; /* Prevents horizontal scroll from animations */
+}
+
+/* NEW: Main section heading */
+.services-main-title {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 /* --- Premium Services Bar --- */
@@ -12,7 +23,7 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
   padding: 2rem 5%;
-  margin-bottom: 4rem;
+  margin-bottom: 5rem; /* Increased margin */
   background-color: var(--dark-accent);
   border-top: 1px solid rgba(255, 184, 51, 0.2);
   border-bottom: 1px solid rgba(255, 184, 51, 0.2);
@@ -51,15 +62,16 @@
 .premium-title {
   font-weight: 600;
   color: var(--text-color);
+  text-align: center;
 }
-
 
 /* --- Complimentary Services Section --- */
 .complimentary-services-container {
   padding: 0 5%;
 }
 
-.section-title {
+/* Renamed from .section-title */
+.section-subtitle {
   text-align: center;
   font-size: 2.5rem;
   font-weight: 700;
@@ -75,7 +87,6 @@
 }
 
 .complimentary-card-wrapper {
-  /* This wrapper handles the 3D transform perspective */
   transform-style: preserve-3d;
 }
 
@@ -95,8 +106,8 @@
 }
 
 .complimentary-card-wrapper:hover .complimentary-card {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 40px var(--glow-color);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 40px var(--glow-color);
 }
 
 .card-icon-wrapper {
@@ -108,7 +119,7 @@
   place-items: center;
   margin-bottom: 1.5rem;
   box-shadow: 0 5px 15px var(--glow-color);
-  transform: translateZ(50px); /* Makes the icon pop out */
+  transform: translateZ(50px);
 }
 
 .card-icon-wrapper svg {
@@ -121,7 +132,7 @@
   font-weight: 600;
   margin-bottom: 0.75rem;
   color: var(--secondary-color);
-  transform: translateZ(30px); /* Adds to the 3D effect */
+  transform: translateZ(30px);
 }
 
 .card-description {
@@ -129,4 +140,98 @@
   font-size: 0.95rem;
   line-height: 1.6;
   transform: translateZ(20px);
+}
+
+/* ===============================================
+   RESPONSIVE DESIGN 
+   =============================================== */
+
+/* --- Tablet View (e.g., iPads) --- */
+@media (max-width: 992px) {
+  .services-section {
+    padding: 4rem 0;
+  }
+  .services-main-title {
+    font-size: 2.5rem;
+  }
+  .premium-services-container {
+    /* Change to a 2x2 grid on tablets */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+  .section-subtitle {
+    font-size: 2.2rem;
+  }
+}
+
+/* --- Mobile View --- */
+@media (max-width: 576px) {
+  .services-section {
+    padding: 3rem 0;
+  }
+  .services-main-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+  }
+  .premium-services-container {
+    /* Keep 2 columns but with less space */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1.5rem 5%;
+    margin-bottom: 3rem;
+  }
+  .premium-card {
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+  .premium-icon {
+    font-size: 2rem;
+  }
+  .premium-title {
+    font-size: 0.8rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  /* REQUEST: Make complimentary grid 2 columns on mobile */
+  .complimentary-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .complimentary-card {
+    padding: 1.5rem 1rem;
+  }
+  .card-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+    transform: translateZ(0); /* Flatten for mobile */
+  }
+  .card-icon-wrapper svg {
+    font-size: 2rem;
+  }
+  .card-title {
+    font-size: 1rem;
+    transform: translateZ(0);
+  }
+  .card-description {
+    font-size: 0.85rem;
+    transform: translateZ(0);
+  }
+
+  /* Disable hover effects on mobile to prevent "sticky hover" */
+  .premium-card:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: transparent;
+  }
+  .complimentary-card-wrapper:hover .complimentary-card {
+    border-color: rgba(255, 184, 51, 0.15);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  }
 }
