@@ -12,6 +12,8 @@
     justify-content: center;
     align-items: center;
     z-index: 9999;
+    padding: 1rem; /* Add padding for safe area on mobile */
+    box-sizing: border-box;
 }
 
 .modal-content {
@@ -21,7 +23,7 @@
     padding: 3rem;
     border-radius: 20px;
     max-width: 650px;
-    width: 90%;
+    width: 100%; /* Changed from 90% */
     border: 1px solid rgba(255, 184, 51, 0.2);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     text-align: center;
@@ -78,6 +80,7 @@
     border: 1px solid transparent;
     border-radius: 12px;
     transition: all 0.3s ease;
+    display: block; /* Ensure Link behaves like a block */
 }
 .modal-option-card:hover {
     border-color: var(--primary-color);
@@ -102,8 +105,58 @@
     color: var(--primary-color);
 }
 
+/* ===============================================
+   RESPONSIVE DESIGN: MOBILE OPTIMIZATION
+   =============================================== */
+
 @media (max-width: 600px) {
+    .modal-content {
+        /* Reduce padding for smaller screens */
+        padding: 2rem 1.5rem;
+    }
+
+    .modal-close-btn {
+        /* Make close button slightly smaller */
+        width: 32px;
+        height: 32px;
+        font-size: 1.2rem;
+        top: 0.75rem;
+        right: 0.75rem;
+    }
+
+    .modal-title {
+        font-size: 1.8rem;
+    }
+    
+    .modal-subtitle {
+        font-size: 0.9rem;
+        max-width: 100%; /* Allow it to use full width */
+        margin-bottom: 2rem;
+    }
+
+    /* KEY CHANGE: Switch from grid to flexbox for options */
     .modal-options {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: row; /* Align items horizontally */
+        gap: 0.75rem; /* Reduce the gap between cards */
+    }
+
+    /* Style the option cards to be smaller and more compact */
+    .modal-option-card {
+        padding: 1.25rem 0.5rem;
+        flex: 1; /* Allow cards to grow and fill the space evenly */
+    }
+
+    .modal-option-icon {
+        font-size: 2.2rem; /* Reduce icon size */
+        margin-bottom: 0.75rem;
+    }
+
+    .modal-option-title {
+        font-size: 0.85rem; /* Reduce title size */
+    }
+
+    .modal-footer-text {
+        font-size: 0.9rem;
     }
 }
