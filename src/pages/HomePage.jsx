@@ -14,8 +14,6 @@ import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
 // Import your OPTIMIZED images
-// For true mobile optimization, consider using tools like Squoosh (squoosh.app)
-// to compress these images and save them in a web-friendly format like WebP.
 import heroImage1 from '../assets/hero-1.png';
 import heroImage2 from '../assets/hero-2.png';
 import heroImage3 from '../assets/hero-3.png';
@@ -29,6 +27,9 @@ import NakshatrasSection from '../components/NakshatrasSection';
 import Testimonials from '../components/Testimonials';
 import BlogSection from '../components/BlogSection';
 import Footer from '../components/Footer';
+
+// <<< 1. IMPORT THE DAILY HOROSCOPE COMPONENT
+import DailyHoroscope from '../components/DailyHoroscope';
 
 const slideContent = [
   {
@@ -53,13 +54,7 @@ const slideContent = [
 
 const HomePage = () => {
   return (
-    // We use a React Fragment <>...</> to group elements without adding an extra node to the DOM.
     <>
-      {/* 
-        STRUCTURAL CHANGE: The hero section is now self-contained.
-        This fixes the issue where content below was not visible. The hero section
-        now occupies its defined space, and the rest of the content flows naturally after it.
-      */}
       <section className="hero-section">
         <Swiper
           modules={[Navigation, Pagination, Autoplay, EffectFade]}
@@ -90,7 +85,6 @@ const HomePage = () => {
                 transition={{ duration: 1, delay: 0.5 }}
                 viewport={{ once: true }}
               >
-                {/* Conditionally render title/subtitle only if they exist */}
                 {slide.title && <h1 className="slide-title">{slide.title}</h1>}
                 {slide.subtitle && <p className="slide-subtitle">{slide.subtitle}</p>}
                 <Link to={slide.link} className="cta-button">
@@ -103,9 +97,13 @@ const HomePage = () => {
         </Swiper>
       </section>
 
-      {/* The rest of your page content now renders correctly below the hero section */}
+      {/* The rest of your page content */}
       <ServicesSection />
       <DailyInsights />
+      
+      {/* <<< 2. ADD THE COMPONENT TO YOUR PAGE LAYOUT */}
+      <DailyHoroscope />
+      
       <ConsultationTopics />
       <NakshatrasSection />
       <Testimonials />
