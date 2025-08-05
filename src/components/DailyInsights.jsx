@@ -1,82 +1,58 @@
 // src/components/DailyInsights.jsx
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { appointmentData, zodiacSignsData } from '../data/insightsData';
-import './DailyInsights.css';
-
-// Shared animation variants
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.2 }
-  }
-};
-
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 100 } }
-};
+import './DailyInsights.css'; // Imports the updated styles
 
 const DailyInsights = () => {
   return (
     <div className="daily-insights-section">
-      {/* Section 1: Schedule Appointment */}
+      {/* Section 1: Our Services (Unchanged) */}
       <motion.section
         className="appointment-section"
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.8 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5 }}
       >
-        <div className="section-header">
-          <h2 className="section-main-title">Schedule Appointment</h2>
-          <Link to="/appointments" className="view-all-btn">View All</Link>
-        </div>
-        <motion.div
-          className="appointment-grid"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-        >
+        <h2 className="section-main-title">Our Services</h2>
+        <div className="appointment-list">
           {appointmentData.map((item, index) => (
-            <motion.div key={index} variants={itemVariants}>
-              <Link to={item.link} className="appointment-card">
-                <div className="appointment-icon">{item.icon}</div>
-                <h3 className="appointment-title">{item.title}</h3>
-              </Link>
-            </motion.div>
+            <Link to={item.link} className="service-item" key={index}>
+              <div className="icon-wrapper">
+                <div className="service-icon">{item.icon}</div>
+              </div>
+              <div className="title-wrapper">
+                <span>{item.title[0]}</span>
+                <span>{item.title[1]}</span>
+              </div>
+            </Link>
           ))}
-        </motion.div>
+        </div>
       </motion.section>
 
-      {/* Section 2: Today's Astrology Prediction */}
+      {/* Section 2: Today's Astrology Prediction (Updated) */}
       <motion.section
         className="prediction-section"
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
       >
         <h2 className="section-main-title">Today's Astrology Prediction</h2>
-        <motion.div
-          className="zodiac-grid"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
+        <div className="zodiac-grid">
           {zodiacSignsData.map((sign) => (
-            <motion.div key={sign.name} variants={itemVariants}>
-              <Link to={sign.link} className="zodiac-item">
+            <Link to={sign.link} className="zodiac-item" key={sign.name}>
+              {/* MODIFIED: The icon-wrapper is back to enable the hover effect! */}
+              <div className="icon-wrapper">
                 <div className="zodiac-icon">{sign.icon}</div>
-                <span className="zodiac-name">{sign.name}</span>
-              </Link>
-            </motion.div>
+              </div>
+              <span className="zodiac-name">{sign.name}</span>
+            </Link>
           ))}
-        </motion.div>
+        </div>
       </motion.section>
     </div>
   );

@@ -1,50 +1,73 @@
 /* src/components/NakshatrasSection.css */
 
+/* --- NEW: Define the color palette (for consistency) --- */
+:root {
+  --image-bg: #141414;
+  --image-container-bg: #222222;
+  --image-primary: #FFB833;
+  --image-text: #BDBDBD;
+  --image-glow: rgba(255, 184, 51, 0.4);
+}
+
 .nakshatras-section {
-    padding: 5rem 5%;
-    background-color: var(--bg-color);
+    padding: 4rem 2rem;
+    /* --- MODIFIED: Changed background to match the theme --- */
+    background-color: var(--image-bg); 
     text-align: center;
 }
 
+/* --- NEW: The dark container that holds everything --- */
+.nakshatra-container {
+    background-color: var(--image-container-bg);
+    padding: 3rem 2rem;
+    border-radius: 20px;
+}
+
 .nakshatras-title {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
-    color: var(--secondary-color);
+    color: var(--image-primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
     margin-bottom: 1rem;
 }
 
 .nakshatras-subtitle {
     max-width: 600px;
     margin: 0 auto 3rem auto;
-    color: var(--text-color);
+    color: var(--image-text); /* Matched text color */
     line-height: 1.6;
 }
 
 .nakshatras-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.25rem;
+    /* --- MODIFIED: A more responsive grid that works well with pills --- */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .nakshatra-item-wrapper {
-    position: relative; /* For z-index on hover */
+    position: relative;
 }
 
+/* --- The original pill styling is preserved --- */
 .nakshatra-pill {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
     padding: 0.8rem 1.5rem;
-    border: 1px solid rgba(255, 184, 51, 0.25);
+    /* --- MODIFIED: Using theme colors --- */
+    border: 1px solid rgba(255, 184, 51, 0.3);
     border-radius: 50px;
-    color: var(--primary-color);
+    color: var(--image-primary);
     background-color: transparent;
     font-weight: 500;
     transition: all 0.3s ease-in-out;
-    width: 100%; /* Ensure link takes full width of its wrapper */
+    width: 100%;
+    text-decoration: none;
 }
 
 .nakshatra-pill-icon svg {
@@ -55,23 +78,23 @@
     font-size: 1rem;
 }
 
+/* --- The original hover effect is preserved --- */
 .nakshatra-pill:hover {
-    color: var(--bg-color);
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-    box-shadow: 0 0 20px var(--glow-color);
+    color: var(--image-bg);
+    background-color: var(--image-primary);
+    border-color: var(--image-primary);
+    box-shadow: 0 0 20px var(--image-glow);
     transform: translateY(-2px);
 }
 
-/* --- View More/All Button --- */
-/* The button is now always visible when rendered by React. No need for display: none. */
+/* --- The original button styling is preserved --- */
 .view-more-btn {
-    display: inline-block; /* Ensures it's visible */
-    margin: 2.5rem auto 0; /* More margin on top */
-    padding: 0.75rem 2.5rem; /* A bit more padding */
+    display: inline-block;
+    margin: 2.5rem auto 0;
+    padding: 0.75rem 2.5rem;
     background-color: transparent;
-    border: 1px solid var(--primary-color);
-    color: var(--primary-color);
+    border: 1px solid var(--image-primary);
+    color: var(--image-primary);
     border-radius: 50px;
     font-weight: 600;
     cursor: pointer;
@@ -79,39 +102,38 @@
 }
 
 .view-more-btn:hover {
-    background-color: var(--primary-color);
-    color: var(--bg-color);
-    box-shadow: 0 0 15px var(--glow-color);
+    background-color: var(--image-primary);
+    color: var(--image-bg);
+    box-shadow: 0 0 15px var(--image-glow);
 }
 
-/* ===============================================
-   RESPONSIVE DESIGN 
-   =============================================== */
-
+/* --- RESPONSIVE DESIGN --- */
 @media (max-width: 768px) {
-    .nakshatras-section {
-        padding: 4rem 5%;
-    }
-    .nakshatras-title {
-        font-size: 2.2rem;
-    }
-    .nakshatras-subtitle {
-        font-size: 0.95rem;
-        margin-bottom: 2.5rem;
-    }
+  .nakshatras-section, .nakshatra-container {
+      padding: 3rem 1.5rem;
+  }
+  .nakshatras-title {
+      font-size: 1.8rem;
+  }
+  .nakshatras-subtitle {
+      font-size: 0.9rem;
+      margin-bottom: 2.5rem;
+  }
+  /* On tablets and smaller, force 2 columns for a clean look */
+  .nakshatras-grid {
+      grid-template-columns: 1fr 1fr;
+  }
+}
 
-    /* Force a strict 2-column layout on mobile */
-    .nakshatras-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
+@media (max-width: 576px) {
+    .nakshatras-section {
+        padding: 3rem 1rem;
     }
-    
     .nakshatra-pill {
-        padding: 0.7rem 1rem;
+        padding: 0.7rem 0.5rem; /* Adjust padding for smaller text */
         gap: 0.5rem;
     }
-
     .nakshatra-pill-name {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
     }
 }

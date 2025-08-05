@@ -1,237 +1,133 @@
 /* src/components/ServicesSection.css */
+/* THE FINAL UNIFIED DESIGN WITH TWO SEPARATE CONTAINERS */
 
-.services-section {
-  padding: 5rem 0; /* Increased padding for more space on desktop */
-  background: linear-gradient(180deg, var(--bg-color) 0%, #1a140f 100%);
-  overflow: hidden; /* Prevents horizontal scroll from animations */
+/* Define the color palette */
+:root {
+  --image-bg: #141414;
+  --image-container-bg: #222222;
+  --image-primary: #FFB833;
+  --image-text: #BDBDBD;
 }
 
-/* NEW: Main section heading */
-.services-main-title {
+/* Overall section styling */
+.services-section {
+  padding: 4rem 2rem;
+  background-color: var(--image-bg);
   text-align: center;
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--primary-color);
+}
+
+/* --- A SHARED STYLE FOR BOTH SERVICE CONTAINERS --- */
+.service-container {
+  background-color: var(--image-container-bg);
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  /* Add margin to space out the two containers */
   margin-bottom: 3rem;
+}
+
+/* Remove bottom margin from the very last container in the section */
+.services-section > .service-container:last-of-type {
+  margin-bottom: 0;
+}
+
+/* The main title of each container */
+.service-container-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--image-primary);
   text-transform: uppercase;
   letter-spacing: 2px;
-}
-
-/* --- Premium Services Bar --- */
-.premium-services-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  padding: 2rem 5%;
-  margin-bottom: 5rem; /* Increased margin */
-  background-color: var(--dark-accent);
-  border-top: 1px solid rgba(255, 184, 51, 0.2);
-  border-bottom: 1px solid rgba(255, 184, 51, 0.2);
-}
-
-.premium-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  transition: all 0.4s ease;
-  border: 1px solid transparent;
-}
-
-.premium-card:hover {
-  transform: translateY(-8px);
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--primary-color);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.premium-icon {
-  font-size: 2.5rem;
-  color: var(--primary-color);
-  transition: color 0.3s ease;
-}
-
-.premium-card:hover .premium-icon {
-  color: var(--secondary-color);
-}
-
-.premium-title {
-  font-weight: 600;
-  color: var(--text-color);
-  text-align: center;
-}
-
-/* --- Complimentary Services Section --- */
-.complimentary-services-container {
-  padding: 0 5%;
-}
-
-/* Renamed from .section-title */
-.section-subtitle {
-  text-align: center;
-  font-size: 2.5rem;
-  font-weight: 700;
   margin-bottom: 3rem;
-  color: var(--secondary-color);
-  letter-spacing: 1px;
 }
 
-.complimentary-grid {
+/* The grid that holds all service items */
+.services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  gap: 2.5rem 1.5rem;
 }
 
-.complimentary-card-wrapper {
-  transform-style: preserve-3d;
+/* Specific grid layouts */
+.premium-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+.complimentary-grid {
+  grid-template-columns: repeat(4, 1fr);
 }
 
-.complimentary-card {
-  background: var(--dark-accent);
-  padding: 2.5rem 1.5rem;
-  border-radius: 16px;
-  text-align: center;
-  border: 1px solid rgba(255, 184, 51, 0.15);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  transform-style: preserve-3d;
-  height: 100%;
+/* Individual service item styling */
+.service-item {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
+  text-decoration: none;
 }
 
-.complimentary-card-wrapper:hover .complimentary-card {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 40px var(--glow-color);
-}
-
-.card-icon-wrapper {
+/* The glowing circle effect wrapper */
+.icon-wrapper {
+  display: grid;
+  place-items: center;
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: linear-gradient(145deg, var(--primary-color), #d4951a);
-  display: grid;
-  place-items: center;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 5px 15px var(--glow-color);
-  transform: translateZ(50px);
+  border: 2px solid transparent; 
+  transition: all 0.3s ease-out;
 }
 
-.card-icon-wrapper svg {
+.service-item:hover .icon-wrapper {
+  border-color: var(--image-primary);
+  box-shadow: 0 0 20px -5px var(--image-primary);
+}
+
+.service-icon {
   font-size: 2.5rem;
-  color: var(--bg-color);
+  color: var(--image-primary);
+  line-height: 1;
 }
 
-.card-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-  color: var(--secondary-color);
-  transform: translateZ(30px);
+.service-title {
+  color: var(--image-text);
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.4;
 }
 
-.card-description {
-  color: var(--text-color);
-  font-size: 0.95rem;
-  line-height: 1.6;
-  transform: translateZ(20px);
-}
-
-/* ===============================================
-   RESPONSIVE DESIGN 
-   =============================================== */
-
-/* --- Tablet View (e.g., iPads) --- */
+/* --- RESPONSIVE DESIGN --- */
 @media (max-width: 992px) {
-  .services-section {
-    padding: 4rem 0;
-  }
-  .services-main-title {
-    font-size: 2.5rem;
-  }
-  .premium-services-container {
-    /* Change to a 2x2 grid on tablets */
+  /* On tablets, switch to a 2x2 grid */
+  .premium-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 4rem;
   }
-  .section-subtitle {
+  /* The complimentary grid can be 3 columns */
+  .complimentary-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .services-section, .service-container {
+    padding: 3rem 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .services-section { padding: 3rem 1rem; }
+  .service-container-title { font-size: 1.8rem; }
+  
+  /* On mobile, both grids become 2 columns */
+  .premium-grid, .complimentary-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 1rem;
+  }
+
+  .icon-wrapper {
+    width: 70px;
+    height: 70px;
+  }
+  .service-icon {
     font-size: 2.2rem;
   }
-}
-
-/* --- Mobile View --- */
-@media (max-width: 576px) {
-  .services-section {
-    padding: 3rem 0;
-  }
-  .services-main-title {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    letter-spacing: 1px;
-  }
-  .premium-services-container {
-    /* Keep 2 columns but with less space */
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    padding: 1.5rem 5%;
-    margin-bottom: 3rem;
-  }
-  .premium-card {
-    padding: 1rem;
-    gap: 0.5rem;
-  }
-  .premium-icon {
-    font-size: 2rem;
-  }
-  .premium-title {
-    font-size: 0.8rem;
-  }
-
-  .section-subtitle {
-    font-size: 1.75rem;
-    margin-bottom: 2rem;
-  }
-
-  /* REQUEST: Make complimentary grid 2 columns on mobile */
-  .complimentary-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-  .complimentary-card {
-    padding: 1.5rem 1rem;
-  }
-  .card-icon-wrapper {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 1rem;
-    transform: translateZ(0); /* Flatten for mobile */
-  }
-  .card-icon-wrapper svg {
-    font-size: 2rem;
-  }
-  .card-title {
-    font-size: 1rem;
-    transform: translateZ(0);
-  }
-  .card-description {
-    font-size: 0.85rem;
-    transform: translateZ(0);
-  }
-
-  /* Disable hover effects on mobile to prevent "sticky hover" */
-  .premium-card:hover {
-    transform: none;
-    box-shadow: none;
-    border-color: transparent;
-  }
-  .complimentary-card-wrapper:hover .complimentary-card {
-    border-color: rgba(255, 184, 51, 0.15);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  .service-title {
+    font-size: 0.9rem;
   }
 }

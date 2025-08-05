@@ -1,174 +1,117 @@
-/* src/components/ConsultationTopics.css - FULLY RESPONSIVE REPLACEMENT */
+/* src/components/ConsultationTopics.css */
+/* NEW STYLING TO MATCH THE DAILYINSIGHTS COMPONENT */
 
-.consultation-section-v2 {
-    padding: 5rem 5%; /* Use percentage for better scaling */
-    background-color: var(--bg-color);
+/* Define the color palette (can be in a global CSS file too) */
+:root {
+  --image-bg: #141414;
+  --image-container-bg: #222222;
+  --image-primary: #FFB833;
+  --image-text: #BDBDBD;
 }
 
-.consultation-main-title-v2 {
-    font-size: 2.5rem; /* Larger title for desktop */
-    font-weight: 700;
-    color: var(--secondary-color); /* This is the color we want to match */
-    text-align: center;
-    margin-bottom: 3.5rem;
-    letter-spacing: 1px;
+/* Overall section styling */
+.consultation-section {
+  padding: 5rem 2rem;
+  background-color: var(--image-bg);
+  text-align: center;
 }
 
-/* DESKTOP: Horizontal list style */
-.consultation-list {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    align-items: stretch; /* Make items full height of container */
-    gap: 2rem;
-    padding: 0;
-    margin: 0;
-    border: 1px solid rgba(255, 184, 51, 0.15);
-    background-color: var(--dark-accent);
-    padding: 1rem;
-    border-radius: 12px;
+/* The main container for the consultation topics */
+.consultation-container {
+  background-color: var(--image-container-bg);
+  padding: 3rem 2rem;
+  border-radius: 20px;
 }
 
+/* The main title of the section */
+.consultation-main-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--image-primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 3rem;
+}
+
+/* The grid that holds all the topic items */
+.consultation-grid {
+  display: grid;
+  /* KEY: Create 6 columns on desktop */
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2.5rem 1rem;
+}
+
+/* Individual topic item styling */
 .consultation-item {
-    position: relative;
-    padding: 1rem;
-    border-radius: 8px; /* Added for a subtle hover effect */
-    transition: background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
 }
 
-.consultation-item:hover {
-    background-color: rgba(255, 255, 255, 0.05);
+/* --- THE GLOWING CIRCLE EFFECT (Reused from DailyInsights) --- */
+.consultation-icon-wrapper {
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid transparent; 
+  transition: all 0.3s ease-out;
 }
 
-/* Vertical Dividers for Desktop View */
-.consultation-item:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    right: -1rem; /* Position it in the center of the gap */
-    top: 50%;
-    transform: translateY(-50%);
-    width: 1px;
-    height: 60%;
-    background-color: rgba(255, 184, 51, 0.2);
+.consultation-item:hover .consultation-icon-wrapper {
+  border-color: var(--image-primary);
+  box-shadow: 0 0 20px -5px var(--image-primary);
 }
 
-.consultation-link {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    color: var(--text-color); /* Text color remains the same */
-    transition: color 0.3s ease;
+.consultation-icon {
+  font-size: 2.5rem;
+  color: var(--image-primary);
+  line-height: 1;
 }
 
-.consultation-item:hover .consultation-link {
-    color: var(--primary-color);
+.consultation-title {
+  color: var(--image-text);
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.4; /* Helps with two-word titles */
 }
 
-/* === UPDATED ICON STYLES === */
-.consultation-icon-v2 svg {
-    font-size: 2.5rem;
-    color: var(--secondary-color); /* CHANGE: Icon color now matches the heading */
-    transition: transform 0.3s ease, color 0.3s ease; /* Add 'color' to transition */
-}
 
-.consultation-item:hover .consultation-icon-v2 svg {
-    transform: scale(1.1);
-    color: var(--primary-color); /* CHANGE: Explicitly set hover color for the icon */
-}
-/* === END OF UPDATED ICON STYLES === */
-
-
-.consultation-title-v2 {
-    font-weight: 500;
-    font-size: 0.9rem;
-    white-space: nowrap; /* Prevent text from wrapping on desktop */
-}
-
-/* ===============================================
-   RESPONSIVE DESIGN 
-   =============================================== */
-
-/* --- Tablet & Mobile View (<= 992px) --- */
+/* --- RESPONSIVE DESIGN --- */
 @media (max-width: 992px) {
-    .consultation-section-v2 {
-        padding: 4rem 5%;
-    }
-
-    .consultation-main-title-v2 {
-        font-size: 2rem;
-        margin-bottom: 3rem;
-    }
-
-    /* KEY CHANGE: Switch to a grid layout */
-    .consultation-list {
-        display: grid;
-        /* Create as many 250px columns as can fit */
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-        /* Remove desktop-specific styles */
-        border: none;
-        background-color: transparent;
-        padding: 0;
-    }
-
-    /* Style each item as a self-contained card */
-    .consultation-item {
-        background: var(--dark-accent);
-        border: 1px solid rgba(255, 184, 51, 0.15);
-        border-radius: 12px;
-        padding: 2rem 1rem;
-        transition: transform 0.3s ease, border-color 0.3s ease;
-    }
-
-    .consultation-item:hover {
-        transform: translateY(-5px);
-        border-color: var(--primary-color);
-        background-color: var(--dark-accent); /* Keep background on hover */
-    }
-
-    /* Hide the desktop dividers */
-    .consultation-item:not(:last-child)::after {
-        display: none;
-    }
-
-    .consultation-title-v2 {
-        white-space: normal; /* Allow text to wrap inside the card */
-        text-align: center;
-    }
+  /* On tablets, switch to 3 columns */
+  .consultation-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-/* --- Small Mobile View (<= 576px) --- */
+@media (max-width: 768px) {
+  .consultation-section, .consultation-container {
+    padding: 3rem 1.5rem;
+  }
+}
+
 @media (max-width: 576px) {
-    .consultation-section-v2 {
-        padding: 3rem 5%;
-    }
+  .consultation-section { padding: 3rem 1rem; }
+  .consultation-main-title { font-size: 1.8rem; }
+  
+  /* On mobile, switch to 2 columns */
+  .consultation-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 1rem;
+  }
 
-    .consultation-main-title-v2 {
-        font-size: 1.8rem;
-        margin-bottom: 2rem;
-    }
-    
-    /* YOUR REQUEST: Force a strict 2-column layout */
-    .consultation-list {
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-    }
-    
-    .consultation-item {
-        padding: 1.5rem 0.5rem;
-    }
-
-    .consultation-link {
-        gap: 0.75rem;
-    }
-
-    .consultation-icon-v2 svg {
-        font-size: 2.2rem;
-    }
-
-    .consultation-title-v2 {
-        font-size: 0.8rem;
-    }
+  .consultation-icon-wrapper {
+    width: 70px;
+    height: 70px;
+  }
+  .consultation-icon {
+    font-size: 2.2rem;
+  }
+  .consultation-title {
+    font-size: 0.9rem;
+  }
 }

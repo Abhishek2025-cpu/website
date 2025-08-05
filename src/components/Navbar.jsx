@@ -36,7 +36,7 @@ const Navbar = () => {
 
   const navItems = [
     { to: "/", icon: <FaHome />, text: "Home" },
-    { to: "/horoscope", icon: <BsStars />, text: "Daily Horoscope" },
+    { to: "/horoscope", icon: <BsStars />, text: "Horoscope" },
     { to: "/zodiac-signs", icon: <BsStars />, text: "Zodiac Signs" },
     { to: "/chat", icon: <BsChatDots />, text: "Chat with Astrologer" },
     { to: "/talk", icon: <FaPhoneAlt />, text: "Talk with Astrologer" },
