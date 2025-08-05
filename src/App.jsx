@@ -16,6 +16,7 @@ import HomePage from './pages/HomePage';
 import { AnimatePresence } from 'framer-motion';
 import PromotionModal from './components/PromotionModal';
 import DailyHoroscope from './components/DailyHoroscope';
+import AstroShopSection from './components/AstroShopSection';
 
 
 
@@ -49,6 +50,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/horoscope" element={<DailyHoroscope />} />
+          <Route path="/pooja" element={<AstroShopSection />} />
 
           {/* ... other routes */}
         </Routes>
