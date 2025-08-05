@@ -17,7 +17,7 @@ import 'swiper/css/effect-fade';
 // For true mobile optimization, consider using tools like Squoosh (squoosh.app)
 // to compress these images and save them in a web-friendly format like WebP.
 import heroImage1 from '../assets/hero-1.png';
-import heroImage2 from '../assets/hero-2.png';
+import heroImage2 from '../assets/new.png';
 import heroImage3 from '../assets/hero-3.png';
 
 import './HomePage.css';
