@@ -47,9 +47,9 @@ function App() {
     <Router>
       {/* --- MODALS --- */}
       {/* Modals are placed here so they can overlay everything */}
-      {/* <AnimatePresence>
+      <AnimatePresence>
         {isPromoModalOpen && <PromotionModal onClose={closePromoModal} />}
-      </AnimatePresence> */}
+      </AnimatePresence>
       
       {/* The Signup Modal is controlled by its own state */}
       {/* <SignupModal isOpen={isSignupModalOpen} onClose={closeSignupModal} /> */}
@@ -57,7 +57,7 @@ function App() {
       {/* --- GLOBAL UI (Navbar) --- */}
       {/* The Navbar is outside <Routes> so it appears on every page. */}
       {/* We pass the correct handler function to it. */}
-      {/* <Navbar onSignupClick={openSignupModal} /> */}
+      <Navbar onSignupClick={openSignupModal} />
 
       {/* --- PAGE CONTENT --- */}
       <main>
