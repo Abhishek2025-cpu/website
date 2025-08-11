@@ -16,8 +16,9 @@ import AstroShopSection from './components/AstroShopSection';
 import PoojaSection from './components/PoojaSection';
 import ZodiacSigns from './components/ZodiacExplorer';
 import PromotionModal from './components/PromotionModal';
-//import SignupModal from './components/SignupModal';
+ import SignupModal from './components/SignupModal';
 import { AnimatePresence } from 'framer-motion';
+import AstroConnect from './pages/AstroConnect';
 
 function App() {
   // STATE MANAGEMENT FIX: Use separate state for each modal
@@ -52,7 +53,7 @@ function App() {
       </AnimatePresence>
       
       {/* The Signup Modal is controlled by its own state */}
-      {/* <SignupModal isOpen={isSignupModalOpen} onClose={closeSignupModal} /> */}
+      <SignupModal isOpen={isSignupModalOpen} onClose={closeSignupModal} />
 
       {/* --- GLOBAL UI (Navbar) --- */}
       {/* The Navbar is outside <Routes> so it appears on every page. */}
@@ -68,6 +69,7 @@ function App() {
           <Route path="/shop" element={<AstroShopSection />} />
           <Route path="/pooja" element={<PoojaSection />} />
           <Route path="/zodiac-signs" element={<ZodiacSigns />} />
+            <Route path="/astro-connect" element={<AstroConnect />} />
           {/* Add other routes here */}
         </Routes>
       </main>

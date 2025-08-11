@@ -54,7 +54,7 @@ const Navbar = ({ onSignupClick }) => {
     { to: "/", icon: <FaHome />, text: "Home" },
     { to: "/horoscope", icon: <BsStars />, text: "Horoscope" },
     { to: "/pooja", icon: <BsStars />, text: "Pooja" },
-    { to: "/strologers", icon: <BsChatDots />, text: "Connect with Astrologer" },
+    { to: "/astro-connect", icon: <BsChatDots />, text: "Connect with Astrologer" },
     { to: "/shop", icon: <FaShoppingCart />, text: "Shop" },
   ];
 
@@ -110,9 +110,9 @@ const Navbar = ({ onSignupClick }) => {
                     </a>
                   </li>
                   <li>
-                    <NavLink to="/logout">
-                      <MdLogout />
-                      <span>Logout</span>
+                    <NavLink to="/profile">
+                      <FaUserPlus />
+                      <span>Profile</span>
                     </NavLink>
                   </li>
                 </motion.ul>
@@ -161,9 +161,9 @@ const Navbar = ({ onSignupClick }) => {
                     </a>
                 </motion.li>
                 <motion.li variants={listItemVariants}>
-                  <NavLink to="/logout" onClick={closeMobileMenu}>
+                  <NavLink to="/profile" onClick={closeMobileMenu}>
                     <MdLogout />
-                    <span>Logout</span>
+                    <span>Profile</span>
                   </NavLink>
                 </motion.li>
               </ul>
