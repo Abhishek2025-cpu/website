@@ -10,10 +10,11 @@ import { FaHome, FaShoppingCart, FaUserCircle, FaUserPlus } from 'react-icons/fa
 import { BsStars, BsChatDots } from 'react-icons/bs';
 import { IoClose } from 'react-icons/io5';
 import { MdLogout } from 'react-icons/md';
+// We no longer need to import Profile here as it's handled by the router
+// import Profile from '../pages/Profile'; 
 
 import './Navbar.css';
 
-// ... (Path component remains the same)
 const Path = (props) => (
   <motion.path
     fill="transparent"
@@ -24,15 +25,12 @@ const Path = (props) => (
   />
 );
 
-
-// UPDATED: Accept onSignupClick as a prop
 const Navbar = ({ onSignupClick }) => { 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
   const userMenuRef = useRef(null);
 
-  // ... (useEffect hooks remain the same)
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto';
   }, [isMenuOpen]);
@@ -57,11 +55,17 @@ const Navbar = ({ onSignupClick }) => {
     { to: "/astro-connect", icon: <BsChatDots />, text: "Connect with Astrologer" },
     { to: "/shop", icon: <FaShoppingCart />, text: "Shop" },
   ];
-
-  const sideMenuVariants = { /* ... remains the same ... */ };
-  const listItemVariants = { /* ... remains the same ... */ };
   
-  // Helper function to handle the click
+  // You can define these variants if they are used, otherwise remove them
+  const sideMenuVariants = {
+    closed: { x: "100%" },
+    open: { x: "0%", transition: { type: 'spring', stiffness: 120 } }
+  };
+  const listItemVariants = {
+    closed: { opacity: 0 },
+    open: { opacity: 1 }
+  };
+  
   const handleAuthClick = (e) => {
     e.preventDefault();
     setIsUserMenuOpen(false);
@@ -102,7 +106,6 @@ const Navbar = ({ onSignupClick }) => {
                   exit={{ opacity: 0, y: 15 }}
                   transition={{ duration: 0.2, ease: "easeOut" }}
                 >
-                  {/* UPDATED: Changed to trigger the modal */}
                   <li>
                     <a href="#" onClick={handleAuthClick}>
                       <FaUserPlus />
@@ -110,8 +113,13 @@ const Navbar = ({ onSignupClick }) => {
                     </a>
                   </li>
                   <li>
-                    <NavLink to="/profile">
-                      <FaUserPlus />
+                    {/* 
+                      --- FIX ---
+                      The link now points to a specific profile URL.
+                      In a real app, the ID would be dynamic.
+                    */}
+                    <NavLink to="/profile/68503e24e727d4bbae22dcb0" onClick={() => setIsUserMenuOpen(false)}>
+                      <FaUserCircle />
                       <span>Profile</span>
                     </NavLink>
                   </li>
@@ -122,7 +130,11 @@ const Navbar = ({ onSignupClick }) => {
         </ul>
 
         <button className="hamburger-button" onClick={toggleMobileMenu}>
-          {/* ... svg remains the same ... */}
+          <svg width="23" height="23" viewBox="0 0 23 23">
+            <Path variants={{ closed: { d: "M 2 2.5 L 20 2.5" }, open: { d: "M 3 16.5 L 17 2.5" } }} animate={isMenuOpen ? "open" : "closed"} />
+            <Path d="M 2 9.423 L 20 9.423" variants={{ closed: { opacity: 1 }, open: { opacity: 0 } }} transition={{ duration: 0.1 }} animate={isMenuOpen ? "open" : "closed"} />
+            <Path variants={{ closed: { d: "M 2 16.346 L 20 16.346" }, open: { d: "M 3 2.5 L 17 16.346" } }} animate={isMenuOpen ? "open" : "closed"} />
+          </svg>
         </button>
       </motion.nav>
 
@@ -130,21 +142,12 @@ const Navbar = ({ onSignupClick }) => {
       <AnimatePresence>
         {isMenuOpen && (
           <>
-            <motion.div
-              className="backdrop"
-              onClick={closeMobileMenu}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            />
-            <motion.aside
-              className="mobile-menu"
-              variants={sideMenuVariants}
-              initial="closed"
-              animate="open"
-              exit="closed"
-            >
-              <div className="mobile-menu-header">{/* ... */}</div>
+            <motion.div className="backdrop" onClick={closeMobileMenu} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} />
+            <motion.aside className="mobile-menu" variants={sideMenuVariants} initial="closed" animate="open" exit="closed">
+              <div className="mobile-menu-header">
+                <h3>Menu</h3>
+                <button onClick={closeMobileMenu}><IoClose size={28} /></button>
+              </div>
               <ul>
                 {navItems.map((item) => (
                   <motion.li key={item.to} variants={listItemVariants}>
@@ -153,7 +156,6 @@ const Navbar = ({ onSignupClick }) => {
                     </NavLink>
                   </motion.li>
                 ))}
-                {/* UPDATED: Changed to trigger the modal */}
                 <motion.li variants={listItemVariants}>
                     <a href="#" onClick={handleAuthClick}>
                         <FaUserPlus />
@@ -161,8 +163,9 @@ const Navbar = ({ onSignupClick }) => {
                     </a>
                 </motion.li>
                 <motion.li variants={listItemVariants}>
-                  <NavLink to="/profile" onClick={closeMobileMenu}>
-                    <MdLogout />
+                  {/* --- FIX --- (Same change as the desktop version) */}
+                  <NavLink to="/profile/68503e24e727d4bbae22dcb0" onClick={closeMobileMenu}>
+                    <FaUserCircle />
                     <span>Profile</span>
                   </NavLink>
                 </motion.li>
