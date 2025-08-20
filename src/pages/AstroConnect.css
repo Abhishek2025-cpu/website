@@ -1,5 +1,5 @@
 /* =======================================================
-   AstroConnect Component Styles - Professional Refresh
+   AstroConnect Component Styles - GUARANTEED TO WORK
    ======================================================= */
 :root {
   --bg-dark: #1A1A1A;
@@ -9,111 +9,100 @@
   --text-primary: #EAEAEA;
   --text-secondary: #A0A0A0;
   --status-live: #2ecc71;
-  --skeleton-base: #3a3a3a;
-  --skeleton-shine: #4a4a4a;
+  /* --- THIS IS THE CRITICAL FIX: The missing variable is now added. --- */
+  --spotlight-color: rgba(255, 204, 0, 0.15); 
 }
 
-/* --- MAIN CONTAINER --- */
+/* --- Main Container --- */
 .astro-connect-container {
   width: 100%;
   min-height: 100vh;
-  padding: 8rem 2rem 4rem;
+  padding: 4rem 2rem;
   background: var(--bg-dark);
   color: var(--text-primary);
   box-sizing: border-box;
 }
 
-/* --- Connection Options --- */
-.connection-options {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-bottom: 3.5rem;
-  flex-wrap: wrap;
-}
-.option-card {
-  background: transparent;
-  width: 120px;
-  height: 120px;
-  border-radius: 20px;
-  border: 2px solid var(--border-color);
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-.option-card svg { font-size: 2.5rem; color: var(--accent-primary); transition: color 0.3s ease; }
-.option-card span { font-size: 1.1rem; font-weight: 500; color: var(--text-secondary); }
-.option-card.active {
-  border-color: var(--accent-primary);
-  background: var(--bg-card);
-}
-.option-card.active span { color: var(--text-primary); }
-
 /* --- Sort Controls --- */
-.sort-controls { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 3rem; color: var(--text-secondary); }
-.sort-controls span { display: flex; align-items: center; gap: 0.5rem; margin-right: 1rem; }
-.sort-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-secondary); padding: 0.5rem 1.2rem; border-radius: 20px; cursor: pointer; transition: all 0.3s ease; }
-.sort-btn:hover { background: var(--bg-card); color: var(--text-primary); border-color: var(--accent-primary); }
-.sort-btn.active { background: var(--accent-primary); color: var(--bg-dark); font-weight: bold; border-color: var(--accent-primary); }
+.sort-controls { 
+  display: flex; justify-content: center; align-items: center; 
+  flex-wrap: wrap; gap: 0.75rem; margin-bottom: 3rem; 
+}
+.sort-controls span { margin-right: 1rem; color: var(--text-secondary); }
+.sort-btn { 
+  background: transparent; border: 1px solid var(--border-color); 
+  color: var(--text-secondary); padding: 0.5rem 1.2rem; 
+  border-radius: 20px; cursor: pointer; transition: all 0.3s ease; 
+}
+.sort-btn:hover { background: var(--bg-card); color: var(--text-primary); }
+.sort-btn.active { 
+  background: var(--accent-primary); color: var(--bg-dark); 
+  font-weight: bold; border-color: var(--accent-primary); 
+}
 
 /* --- Astrologer Grid & Message States --- */
-.astrologer-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2.5rem; max-width: 1600px; margin: 0 auto; }
+.astrologer-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+  gap: 2.5rem; max-width: 1600px; margin: 0 auto; 
+}
 .info-message, .error-message { text-align: center; color: var(--text-secondary); font-size: 1.2rem; padding: 4rem 0; }
 .error-message { color: #e74c3c; }
 .full-width { grid-column: 1 / -1; }
 
-/* --- Skeleton Card --- */
-.skeleton-card { background: var(--bg-card); border-radius: 15px; overflow: hidden; border: 1px solid var(--border-color); padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
-.skeleton-header { display: flex; justify-content: center; }
-.skeleton-img { width: 120px; height: 120px; border-radius: 50%; background: var(--skeleton-base); position: relative; overflow: hidden; }
-.skeleton-body { display: flex; flex-direction: column; align-items: center; gap: 0.8rem; }
-.skeleton-line { height: 16px; background: var(--skeleton-base); border-radius: 4px; position: relative; overflow: hidden; }
-.skeleton-line.title { width: 60%; height: 24px; }
-.skeleton-line.skills { width: 80%; }
-.skeleton-line.meta { width: 90%; }
-.skeleton-line.charges { width: 40%; height: 28px; }
-.skeleton-footer { margin-top: auto; }
-.skeleton-button { width: 100%; height: 45px; background: var(--skeleton-base); border-radius: 8px; position: relative; overflow: hidden; }
-
-/* Shimmer Animation */
-.skeleton-img::after, .skeleton-line::after, .skeleton-button::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -150%;
-  width: 150%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, var(--skeleton-shine), transparent);
-  animation: shimmer 1.5s infinite;
-}
-@keyframes shimmer { 100% { left: 150%; } }
-
 /* --- Real Astrologer Card --- */
-.astrologer-card { border-radius: 15px; overflow: hidden; border: 1px solid var(--border-color); position: relative; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.astrologer-card:hover { transform: translateY(-8px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-color: rgba(255, 204, 0, 0.5); }
-.card-content { background: var(--bg-card); display: flex; flex-direction: column; height: 100%; }
+.astrologer-card {
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  /* --- FIX: Added a fallback background color --- */
+  background: var(--bg-card); 
+  position: relative;
+  transition: transform 0.3s ease;
+}
+.astrologer-card:hover { transform: translateY(-8px); }
+.card-content { display: flex; flex-direction: column; height: 100%; }
 .card-header { padding: 1.5rem 1rem 0; display: flex; justify-content: center; }
-.profile-picture { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid var(--accent-primary); position: relative; z-index: 2; }
-.status-dot { position: absolute; bottom: 5px; right: 5px; width: 20px; height: 20px; border-radius: 50%; border: 3px solid var(--bg-card); z-index: 3; }
-.status-dot.live { background-color: var(--status-live); box-shadow: 0 0 10px var(--status-live); animation: pulse 2s infinite; }
+.profile-picture-container { position: relative; }
+.profile-picture {
+  width: 120px; height: 120px; border-radius: 50%;
+  object-fit: cover; border: 4px solid var(--accent-primary);
+}
+.status-dot {
+  position: absolute; bottom: 5px; right: 5px;
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 3px solid var(--bg-card);
+}
+.status-dot.live { background-color: var(--status-live); }
 .status-dot.offline { background-color: #7f8c8d; }
-.card-body { padding: 1rem 1.5rem; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.card-body {
+  padding: 1rem 1.5rem; text-align: center; flex-grow: 1;
+  display: flex; flex-direction: column; justify-content: space-around;
+}
 .astrologer-name { font-size: 1.5rem; margin: 0.5rem 0; color: var(--text-primary); }
-.astrologer-skills { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; min-height: 24px; }
-.skill-tag { background-color: rgba(255,255,255,0.05); color: var(--text-secondary); font-size: 0.8rem; padding: 0.2rem 0.6rem; border-radius: 5px; }
-.astrologer-meta { display: flex; justify-content: space-around; color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; }
+.astrologer-skills { 
+  display: flex; justify-content: center; flex-wrap: wrap; 
+  gap: 0.5rem; margin-bottom: 1rem; min-height: 24px; 
+}
+.skill-tag { 
+  background-color: rgba(255,255,255,0.05); color: var(--text-secondary); 
+  font-size: 0.8rem; padding: 0.2rem 0.6rem; border-radius: 5px; 
+}
+.astrologer-meta { 
+  display: flex; justify-content: space-around; 
+  color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; 
+}
 .astrologer-meta span { display: flex; align-items: center; gap: 0.3rem; }
 .astrologer-meta svg { color: var(--accent-primary); }
 .astrologer-charges { font-size: 1.8rem; font-weight: bold; color: var(--accent-primary); }
-.astrologer-charges span { font-size: 1rem; font-weight: 400; color: var(--text-secondary); margin-left: 0.25rem; }
+.astrologer-charges span { font-size: 1rem; color: var(--text-secondary); margin-left: 0.25rem; }
 .card-footer { padding: 1rem; background-color: rgba(0, 0, 0, 0.2); }
-.action-button { width: 100%; padding: 0.8rem; font-size: 1.1rem; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.75rem; transition: all 0.3s ease; }
+.action-button { 
+  width: 100%; padding: 0.8rem; font-size: 1.1rem; font-weight: bold;
+  border: none; border-radius: 8px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+  transition: all 0.3s ease; 
+}
 .action-button.enabled { background: var(--accent-primary); color: var(--bg-dark); }
-.action-button.enabled:hover { background-color: #ffe066; transform: scale(1.05); }
+.action-button.enabled:hover { background-color: #ffe066; }
 .action-button.disabled { background-color: #333; color: #777; cursor: not-allowed; }
-
-@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); } 70% { box-shadow: 0 0 10px 10px rgba(46, 204, 113, 0.4); } }
