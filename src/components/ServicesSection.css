@@ -18,7 +18,9 @@
 
 /* --- A SHARED STYLE FOR BOTH SERVICE CONTAINERS --- */
 .service-container {
-  background-color: var(--image-container-bg);
+  background: #13172C; /* Dark navy background */
+  border-radius: 20px; /* Rounded corners */
+  color: #FFB833;
   padding: 3rem 2rem;
   border-radius: 20px;
   /* Add margin to space out the two containers */
@@ -34,7 +36,7 @@
 .service-container-title {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--image-primary);
+ background: #13172C;
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-bottom: 3rem;
@@ -86,7 +88,7 @@
 }
 
 .service-title {
-  color: var(--image-text);
+  color: #eee;
   font-weight: 500;
   font-size: 1rem;
   line-height: 1.4;

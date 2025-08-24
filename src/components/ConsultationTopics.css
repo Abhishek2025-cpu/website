@@ -18,7 +18,7 @@
 
 /* The main container for the consultation topics */
 .consultation-container {
-  background-color: var(--image-container-bg);
+ background: #13172C;
   padding: 3rem 2rem;
   border-radius: 20px;
 }
@@ -73,7 +73,7 @@
 }
 
 .consultation-title {
-  color: var(--image-text);
+  color: #eee;
   font-weight: 500;
   font-size: 1rem;
   line-height: 1.4; /* Helps with two-word titles */

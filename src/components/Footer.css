@@ -1,6 +1,6 @@
 /* src/components/Footer.css */
 .site-footer {
-    background-color: var(--dark-accent);
+     background: #13172C;
     color: var(--text-color);
     padding-top: 4rem;
     border-top: 2px solid var(--primary-color);

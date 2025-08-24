@@ -18,7 +18,7 @@
 /* Styling for BOTH section containers */
 .appointment-section,
 .prediction-section {
-  background-color: var(--image-container-bg);
+ background: #13172C;
   padding: 3rem 2rem;
   border-radius: 20px;
   margin-bottom: 5rem;
@@ -103,14 +103,14 @@
 .title-wrapper {
   display: flex;
   flex-direction: column;
-  color: var(--image-text);
+color: #eee;
   font-weight: 500;
   font-size: 1rem;
   line-height: 1.4;
 }
 
 .zodiac-name {
-  color: var(--image-text);
+color: #eee;
   font-weight: 500;
   font-size: 1rem;
 }

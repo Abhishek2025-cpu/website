@@ -18,7 +18,7 @@
 
 /* --- NEW: The dark container that holds everything --- */
 .nakshatra-container {
-    background-color: var(--image-container-bg);
+  background: #13172C;
     padding: 3rem 2rem;
     border-radius: 20px;
 }
@@ -35,7 +35,7 @@
 .nakshatras-subtitle {
     max-width: 600px;
     margin: 0 auto 3rem auto;
-    color: var(--image-text); /* Matched text color */
+   color: #eee; /* Matched text color */
     line-height: 1.6;
 }
 
