@@ -6,6 +6,7 @@ import { GiSun } from 'react-icons/gi';
 import { FaFacebookF, FaYoutube, FaInstagram, FaXTwitter } from 'react-icons/fa6';
 import { FiArrowUp } from 'react-icons/fi';
 import { quickLinks, usefulLinks } from '../data/footerLinksData';
+import ContactForm from "./ContactForm";
 // REMOVED: No longer importing local images
 // import googlePlayBadge from '../assets/google-play-badge.png';
 // import appStoreBadge from '../assets/app-store-badge.png';
@@ -13,6 +14,11 @@ import './Footer.css';
 
 const Footer = () => {
   const [isVisible, setIsVisible] = useState(false);
+
+
+// inside Footer component:
+const [isContactOpen, setIsContactOpen] = useState(false);
+
 
   const toggleVisibility = () => {
     if (window.pageYOffset > 300) {
@@ -81,13 +87,31 @@ const Footer = () => {
             {quickLinks.map(link => <li key={link.title}><Link to={link.path}>{link.title}</Link></li>)}
           </ul>
         </div>
+<div className="footer-column">
+  <h3 className="footer-title">Useful Links</h3>
+  <ul className="footer-links">
+    {usefulLinks.map(link => (
+      <li key={link.title}>
+        {link.title === "Contact Us" ? (
+          <button 
+            className="contact-link" 
+            onClick={() => setIsContactOpen(true)}
+          >
+            {link.title}
+          </button>
+        ) : (
+          <Link to={link.path}>{link.title}</Link>
+        )}
+      </li>
+    ))}
+  </ul>
+</div>
 
-        <div className="footer-column">
-          <h3 className="footer-title">Useful Links</h3>
-          <ul className="footer-links">
-            {usefulLinks.map(link => <li key={link.title}><Link to={link.path}>{link.title}</Link></li>)}
-          </ul>
-        </div>
+<ContactForm 
+  isOpen={isContactOpen} 
+  onClose={() => setIsContactOpen(false)} 
+/>
+
       </div>
       <div className="footer-bottom">
         <p>© {new Date().getFullYear()} KalpJyotish. All rights reserved.</p>
