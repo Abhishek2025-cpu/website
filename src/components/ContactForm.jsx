@@ -13,14 +13,50 @@ const ContactForm = ({ isOpen, onClose }) => {
     message: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [responseMsg, setResponseMsg] = useState("");
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    onClose();
+    setLoading(true);
+    setResponseMsg("");
+
+    try {
+      const res = await fetch(
+        "https://kalpyotish.onrender.com/api/contact/add",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setResponseMsg("✅ Message sent successfully!");
+        setFormData({
+          name: "",
+          email: "",
+          mobile: "",
+          city: "",
+          purpose: "General",
+          message: "",
+        });
+      } else {
+        setResponseMsg(`❌ Error: ${data.message || "Something went wrong"}`);
+      }
+    } catch (error) {
+      setResponseMsg("❌ Server not responding, please try again later.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -82,18 +118,7 @@ const ContactForm = ({ isOpen, onClose }) => {
                   onChange={handleChange}
                   required
                 />
-                {/* <select
-                  name="purpose"
-                  value={formData.purpose}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="General">General</option>
-                  <option value="Feedback">Feedback</option>
-                  <option value="Support">Support</option>
-                  <option value="Collaboration">Collaboration</option>
-                  <option value="Others">Others</option>
-                </select> */}
+
                 <textarea
                   name="message"
                   placeholder="Your Message"
@@ -103,11 +128,27 @@ const ContactForm = ({ isOpen, onClose }) => {
                   required
                 />
                 <div className="modal-footer">
-                  <button type="submit" className="connect-button">
-                    Send Message
+                  <button
+                    type="submit"
+                    className="connect-button"
+                    disabled={loading}
+                  >
+                    {loading ? "Sending..." : "Send Message"}
                   </button>
                 </div>
               </form>
+
+              {/* Response Message */}
+              {responseMsg && (
+                <p
+                  style={{
+                    marginTop: "10px",
+                    color: responseMsg.startsWith("✅") ? "green" : "red",
+                  }}
+                >
+                  {responseMsg}
+                </p>
+              )}
             </div>
           </motion.div>
         </motion.div>
