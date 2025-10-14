@@ -22,6 +22,7 @@ import SignupModal from './components/SignupModal';
 import { AnimatePresence } from 'framer-motion';
 import AstrologerList from './pages/AstrologerList';
 import Profile from './pages/Profile';
+import Contact from './components/Contact';
 
 function App() {
   const [isPromoModalOpen, setIsPromoModalOpen] = useState(false);
@@ -61,6 +62,7 @@ function App() {
           <Route path="/pooja" element={<PoojaSection />} />
           <Route path="/zodiac-signs" element={<ZodiacSigns />} />
           <Route path="/astro-connect" element={<AstrologerList />} />
+             <Route path="/Contact-us" element={<Contact />} />
 
           {/* This route correctly tells the app to render the Profile component */}
           <Route path="/profile/:userId" element={<Profile />} />

@@ -53,6 +53,7 @@ const Navbar = ({ onSignupClick }) => {
     { to: "/horoscope", icon: <BsStars />, text: "Horoscope" },
     { to: "/pooja", icon: <BsStars />, text: "Pooja" },
     { to: "/astro-connect", icon: <BsChatDots />, text: "Connect with Astrologer" },
+       { to: "/contact-us", icon: <BsChatDots />, text: "Contact Now" },
     { to: "/shop", icon: <FaShoppingCart />, text: "Shop" },
   ];
   

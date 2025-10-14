@@ -2,12 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
 :root {
-  --bg-color: #120e0a; /* Deep, warm charcoal */
-  --primary-color: #ffb833; /* Rich gold/amber */
-  --secondary-color: #ffda79; /* Lighter, glowing yellow */
-  --text-color: #f0e9e0; /* Soft, warm off-white */
-  --glow-color: rgba(255, 184, 51, 0.6);
-  --dark-accent: #2c251d;
+  --bg-color: #fffaf3; /* Warm white with slight cream tone */
+  --primary-color: #b8860b; /* Deep elegant gold */
+  --secondary-color: #ffd700; /* Bright golden yellow */
+  --text-color: #2b210e; /* Deep brown for contrast */
+  --glow-color: rgba(255, 215, 0, 0.3); /* Soft gold glow */
+  --dark-accent: #e8e0c8; /* Subtle beige accent */
 }
 
 * {
