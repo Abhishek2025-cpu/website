@@ -1,25 +1,20 @@
-import React, { useState } from "react";
+import React, { useState } from "react"; 
 import { FaWhatsapp } from "react-icons/fa";
 import { FiArrowRight, FiLoader, FiCheckCircle, FiXCircle } from 'react-icons/fi';
-import { motion, AnimatePresence } from 'framer-motion'; // Import AnimatePresence for toast exit animations
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
-
-// Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
-// Import your OPTIMIZED images
 import heroImage1 from '../assets/hero-1.png';
 import heroImage2 from '../assets/new.png';
 import heroImage3 from '../assets/hero-3.png';
 
-// Import other sections
 import ServicesSection from '../components/ServicesSection';
 import DailyInsights from '../components/DailyInsights';
 import ConsultationTopics from '../components/ConsultationTopics';
@@ -27,16 +22,12 @@ import NakshatrasSection from '../components/NakshatrasSection';
 import Testimonials from '../components/Testimonials';
 import BlogSection from '../components/BlogSection';
 import Footer from '../components/Footer';
+import "./Contact.css";
 
-import "./Contact.css"; // Main CSS for this page
-
-// Simple Toast Component
 const Toast = ({ message, type, onClose }) => {
   if (!message) return null;
-
   const toastClass = type === "success" ? "toast-success" : "toast-error";
   const Icon = type === "success" ? FiCheckCircle : FiXCircle;
-
   return (
     <motion.div
       className={`toast-notification ${toastClass}`}
@@ -52,8 +43,7 @@ const Toast = ({ message, type, onClose }) => {
   );
 };
 
-
-const LandingPage = () => { // Renamed Contact to LandingPage for clarity
+const LandingPage = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -65,7 +55,7 @@ const LandingPage = () => { // Renamed Contact to LandingPage for clarity
     query: "",
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [toast, setToast] = useState(null); // { message: "", type: "" }
+  const [toast, setToast] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -74,38 +64,54 @@ const LandingPage = () => { // Renamed Contact to LandingPage for clarity
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setToast(null); // Clear previous toasts
+    setToast(null);
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      console.log("Form submitted:", formData);
-      setToast({ message: "Thank you! Your query has been submitted successfully.", type: "success" });
-
-      // Reset form after successful submission
-      setFormData({
-        name: "",
-        email: "",
-        mobile: "",
-        gender: "",
-        dob: "",
-        tob: "",
-        pob: "",
-        query: "",
+      // ✅ Make real API call instead of simulation
+      const response = await fetch("https://www.kalpjyotish.com/api/api/contact/add", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          mobile: formData.mobile,
+          gender: formData.gender,
+          dob_time: `${formData.dob} ${formData.tob}`,
+          place_of_birth: formData.pob,
+          query: formData.query,
+        }),
       });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        console.log("Form submitted successfully:", data);
+        setToast({ message: "Thank you! Your query has been submitted successfully.", type: "success" });
+
+        setFormData({
+          name: "",
+          email: "",
+          mobile: "",
+          gender: "",
+          dob: "",
+          tob: "",
+          pob: "",
+          query: "",
+        });
+      } else {
+        throw new Error(data.message || "Failed to submit form");
+      }
     } catch (error) {
       console.error("Form submission error:", error);
       setToast({ message: "Oops! Something went wrong. Please try again.", type: "error" });
     } finally {
       setIsLoading(false);
-      // Automatically close toast after a few seconds
       setTimeout(() => setToast(null), 5000);
     }
   };
 
   const handleWhatsAppClick = () => {
-    window.open("https://wa.me/918979408209", "_blank");
+    window.open("https://wa.me/919105783395", "_blank");
   };
 
   const slideContent = [
@@ -130,15 +136,13 @@ const LandingPage = () => { // Renamed Contact to LandingPage for clarity
   ];
 
   return (
-    <div className="landing-page-wrapper"> {/* New wrapper for the entire page content */}
-      {/* Toast notifications */}
+    <div className="landing-page-wrapper">
       <AnimatePresence>
         {toast && (
           <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />
         )}
       </AnimatePresence>
 
-      {/* Hero Section */}
       <section className="hero-section">
         <Swiper
           modules={[Navigation, Pagination, Autoplay, EffectFade]}
@@ -147,20 +151,14 @@ const LandingPage = () => { // Renamed Contact to LandingPage for clarity
           navigation
           pagination={{ clickable: true }}
           loop={true}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-          }}
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
           effect="fade"
           speed={1200}
           className="hero-swiper"
         >
           {slideContent.map((slide, index) => (
             <SwiperSlide key={index} className="hero-slide">
-              <div
-                className="slide-background"
-                style={{ backgroundImage: `url(${slide.image})` }}
-              ></div>
+              <div className="slide-background" style={{ backgroundImage: `url(${slide.image})` }}></div>
               <div className="slide-overlay"></div>
               <motion.div
                 className="slide-content"
@@ -181,7 +179,6 @@ const LandingPage = () => { // Renamed Contact to LandingPage for clarity
         </Swiper>
       </section>
 
-      {/* Contact Form Section */}
       <section className="contact-form-section section-padding">
         <motion.div
           className="contact-form-card"
@@ -191,8 +188,8 @@ const LandingPage = () => { // Renamed Contact to LandingPage for clarity
           viewport={{ once: true, amount: 0.3 }}
         >
           <div className="form-card-header">
-            <h2>Connect With Us</h2> {/* Slightly changed title */}
-            <p>Have a question or need guidance? Fill out the form below!</p> {/* Added subtitle */}
+            <h2>Connect With Us</h2>
+            <p>Have a question or need guidance? Fill out the form below!</p>
           </div>
           <form onSubmit={handleSubmit} className="contact-form-actual">
             <motion.div className="form-group" whileHover={{ scale: 1.01 }}>
@@ -263,18 +260,14 @@ const LandingPage = () => { // Renamed Contact to LandingPage for clarity
         </motion.div>
       </section>
 
-      {/* Other Sections */}
       <ServicesSection />
       <ConsultationTopics />
       <NakshatrasSection />
       <DailyInsights />
       <Testimonials />
       <BlogSection />
-
-      {/* Footer */}
       <Footer />
 
-      {/* WhatsApp Sticky Icon */}
       <motion.div
         className="whatsapp-icon"
         onClick={handleWhatsAppClick}
