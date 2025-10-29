@@ -199,3 +199,86 @@
     background-color: rgba(255, 255, 255, 0.05);
   }
 }
+
+/* Rounded promo button */
+.promo-button {
+  background-color: rgba(255, 184, 51, 0.15);
+  border: 2px solid #ffb833;
+  color: #ffb833;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.promo-button:hover {
+  background-color: #ffb833;
+  color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(255, 184, 51, 0.6);
+}
+/* =============================
+   PROMO BUTTON (COMMON STYLE)
+   ============================= */
+.promo-button {
+  background-color: rgba(255, 204, 0, 0.15);
+  border: 2px solid #ffcc00;
+  color: #ffcc00;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.promo-button:hover {
+  background-color: #ffcc00;
+  color: #13172C;
+  transform: scale(1.08);
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.6);
+}
+
+/* --- Desktop-only placement --- */
+.promo-desktop {
+  display: flex;
+  align-items: center;
+}
+
+/* --- Mobile icon section (promo + hamburger) --- */
+.mobile-icons {
+  display: none;
+  align-items: center;
+  gap: 14px;
+}
+
+/* =============================
+   RESPONSIVE ADJUSTMENTS
+   ============================= */
+@media (max-width: 850px) {
+  /* Hide promo from list */
+  .promo-desktop {
+    display: none;
+  }
+
+  /* Show promo before hamburger */
+  .mobile-icons {
+    display: flex;
+  }
+
+  .mobile-icons .promo-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Adjust hamburger position if needed */
+  .hamburger-button {
+    padding: 8px;
+  }
+}

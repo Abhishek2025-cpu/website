@@ -12,9 +12,9 @@
   --astro-primary-hover-color: #ffe066;
   --astro-text-light: #EAEAEA;
   --astro-text-medium: #A0A0A0;
-  --astro-text-dark-on-accent: #1A1A1A;
+  --astro-text-dark-on-accent: #f5f5f5;
   --status-live-bg: #22c55e;
-  --status-live-text: #ffffff;
+  --status-live-text: #f5f5f5;
 }
 
 /* --- Main Component Wrapper --- */

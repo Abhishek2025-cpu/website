@@ -2,7 +2,7 @@
 
 /* Define the color palette */
 :root {
-  --pooja-bg: #141414;
+  --pooja-bg: #f5f5f5;
   --pooja-card-bg: #222222;
   --pooja-primary: #FFB833;
   --pooja-text: #BDBDBD;
@@ -90,7 +90,7 @@
   position: relative;
   height: 200px;
   /* --- MODIFIED: Add a dark background to the image area --- */
-  background-color: #1a1a1a;
+  background-color: #f5f5f5;
   flex-shrink: 0; /* Prevents the image container from shrinking */
 }
 
