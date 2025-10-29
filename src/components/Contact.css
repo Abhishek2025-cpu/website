@@ -140,7 +140,7 @@ body {
 }
 
 .contact-form-card { /* Main container for the form */
-  background:#13172C; /* Soft gradient background */
+  background:#E05320; /* Soft gradient background */
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
   padding: 30px;

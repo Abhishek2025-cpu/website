@@ -18,7 +18,7 @@
 
 /* --- A SHARED STYLE FOR BOTH SERVICE CONTAINERS --- */
 .service-container {
-  background: #13172C; /* Dark navy background */
+  background: #E05320; /* Dark navy background */
   border-radius: 20px; /* Rounded corners */
   color: #FFB833;
   padding: 3rem 2rem;
@@ -36,7 +36,7 @@
 .service-container-title {
   font-size: 2rem;
   font-weight: 700;
- background: #13172C;
+ background: #E05320;
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-bottom: 3rem;

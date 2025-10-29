@@ -6,7 +6,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-   background: #13172C;
+   background: #E05320;
   backdrop-filter: blur(10px);
   color: var(--primary-color);
   position: fixed;
@@ -240,7 +240,7 @@
 
 .promo-button:hover {
   background-color: #ffcc00;
-  color: #13172C;
+  color: #E05320;
   transform: scale(1.08);
   box-shadow: 0 0 10px rgba(255, 204, 0, 0.6);
 }

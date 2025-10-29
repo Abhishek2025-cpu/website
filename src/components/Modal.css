@@ -42,7 +42,7 @@
 .language-switcher button.active,
 .language-switcher button:hover {
   background: #ffb833;
-  color: #13172c;
+  color: #E05320;
 }
 
 .close-button {
@@ -64,7 +64,7 @@
 
 .connect-button {
   background-color: #ffb833;
-  color: #13172c;
+  color: #E05320;
   border: none;
   padding: 1rem 2rem;
   font-size: 1rem;
